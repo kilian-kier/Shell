@@ -1,0 +1,21 @@
+exit : Beendet die Shell
+help : zeigt alle verfügbaren Befehle
+clear : löscht den Inhalt der Konsole
+cat $$ : gibt den Inhalt der übergebenen Datei aus
+pwd : Gib den aktuellen Pfad aus
+ls ($): gib den Inhalt des übergebenen Ordners aus. Bei keinem Parameter des aktuellen Ordners
+touch $$ : erstellt im aktuellen Ordner eine Datei
+rm $$ : löscht die übergebenen Ordner oder Dateien. Deshalb kein rmdir notwendig
+cd $: wechselt das current working directory in den übergebenen Pfad
+mv $ $$ : verschiebt die übergeben Datei ($$) in den übergebenen Ordner ($)
+cp $ $$ : kopiert den Inhalt der übergebene Dateien ($$) in die übergebene Datei bzw. Ordner ($)
+mkdir $ : erstellt im current working directory einen Ordner
+echo $$ : gibt den übergebene Text aus.
+chmod $ $$ : ändert die Rechte der Dateien und Ordner ($$)
+whoami : gibt den Username des Benutzers aus
+set_alias $ $$ : setzt Aliases ($$) für einen Befehl ($)
+rm_alias $ $: löscht die Aliase ($$) eines Befehls ($)
+show_aliases : gibt alle Aliase aus
+date : gib das aktuelle Datum aus
+time : gib die aktuelle Uhrzeit aus
+write ($) $ $$: schreibt $$ in eine Datei $. Mit optionalen Parameter -a ($) an die Datei anhängen

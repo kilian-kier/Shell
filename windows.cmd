@@ -1,0 +1,1 @@
+start /min cmd.exe /c source\compile.cmd

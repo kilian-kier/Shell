@@ -1,8 +1,7 @@
 # Shell - Kier Kilian
 
-
 ------------
-
+<https://github.com/kilian-kier/Shell>
 ## Installation und Ausführung
 
 ### help.o
@@ -16,21 +15,17 @@ generiert werden.
 
 ```cmd
 windows.cmd
-Shell.exe
 ```
 oder
 ```cmd
-cd source
-ld -r -b binary help.txt -o help.o
-gcc alias.c basic_cmd.c command.c file_cmd.c functions.c help.o input.c main.c struct.c -o ../Shell.exe
-cd ..
+ld -r -b binary source\help.txt -o source\help.o
+gcc source\alias.c source\basic_cmd.c source\command.c source\file_cmd.c source\functions.c source\help.o source\input.c source\main.c source\struct.c -o Shell.exe
 Shell.exe
 ```
 ### Linux
 
 ```bash
 ./linux.sh
-./shell
 ```
 oder
 ```bash
@@ -39,10 +34,8 @@ make
 ```
 oder
 ```bash
-cd source
-ld -r -b binary help.txt -o help.o
-gcc alias.c basic_cmd.c command.c file_cmd.c functions.c help.o input.c main.c struct.c -o ../shell
-cd ..
+ld -r -b binary source/help.txt -o source/help.o
+gcc source/alias.c source/basic_cmd.c source/command.c source/file_cmd.c source/functions.c source/help.o source/input.c source/main.c source/struct.c -o shell
 ./shell
 ```
 
@@ -69,14 +62,14 @@ cat $$: gibt den Inhalt der übergebenen Datei aus.
 >**rm**\
 rm $$: löscht die übergebenen Ordner oder Dateien. Deshalb kein rmdir notwendig
 
->**mv**\
-mv $ $$: verschiebt die übergebene Dateien ($$) in den übergebenen Ordner ($)
-
 >**cp**\
 cp $ $$: kopiert den Inhalt der übergebene Dateien ($$) in die übergebene Datei ($). 
 > Die Datei ($) wird überschrieben (nach Bestätigung des Benutzers) und falls noch nicht vorhanden wird sie erstellt. 
 > Anstelle von einer Datei kann man auch einen Ordner ($) übergeben und die Dateien ($) dorthin kopieren. 
 > Falls sich in diesem Ordner bereits eine Datei mit gleichen Name befindet wird sie überschrieben (nach Bestätigung des Benutzers).
+
+>**mv**\
+mv $ $$: ähnlich wir cp, nur dass bei mv die Dateien ($$) gelöscht werden
 
 >**echo**\
 echo $$: gibt den übergebene Text aus.
@@ -124,6 +117,9 @@ rm_alias $ $$: löscht die Aliase ($$) eines Befehls ($).
 >**show_aliases**\
 show_aliases: gibt alle aliase aus.
 
+>**rename**\
+rename $ $: benennt den 1. Parameter in den 2. um
+
 
 ------------
 
@@ -142,7 +138,7 @@ Das erste Element des Arrays (der Befehl) wird im binären Baum gesucht und fall
 wird der Benutzer gefragt ob er ihn im System suchen und ausführen soll (mit system())
 
 ### was noch nicht funktioniert
- - Umlauten auf Windows (Ausgabe, Dateinamen, Write, …)
+ - Umlaute auf Windows (Ausgabe, Dateinamen, Write, …)
  - verschieben und kopieren von ganzen Ordnern
  - ls: wirkliche Größe auf Festplatte stimmt meistens nicht
  - rm: mehrere Ordner. Ein Ordner und mehrere Dateien funktioniert.

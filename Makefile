@@ -14,10 +14,8 @@ $(SDIR)/%.o: $(SDIR)/%.c $(HEAD)
 help: $(SDIR)/help.txt
 	ld -r -b binary $(SDIR)/help.txt -o $(SDIR)/help.o
 
-OBJ 	:= $(wildcard $(SDIR)/*.o)
-
-shell: $(OBJ)
-	gcc $(OBJ) -o shell
+shell: $(OBJS) $(SDIR)/help.o
+	gcc $(OBJS) $(SDIR)/help.o -o shell
 
 clean:
 	rm $(OBJS)

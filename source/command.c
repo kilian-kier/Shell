@@ -19,10 +19,9 @@ command *create_cmd(char *cmd, void (*fun)(cmd_line *), char *help, command *nod
 }
 
 command *search_cmd(char *cmd, command *node) {
-    if (node == NULL)
-        return NULL;
-    if (search_alias(node->aliases, cmd) != NULL)
-        return node;
+    if (node == NULL) {
+        return search_alias(global_cmd_root, cmd);
+    }
     int x = strcmp(cmd, node->cmd);
     if (x == 0)
         return node;

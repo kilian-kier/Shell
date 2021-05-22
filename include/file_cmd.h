@@ -18,4 +18,6 @@ void chmode(struct cmd_line *line);
 
 void write_to_file(struct cmd_line *line);
 
+void rn(struct cmd_line *line);
+
 #endif //SHELL_FILE_CMD_H

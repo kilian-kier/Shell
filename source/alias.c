@@ -74,14 +74,28 @@ alias *delete_alias(alias *node, char *string, command *cmd) {
     return node;
 }
 
-alias *search_alias(alias *node, char *string) {
+command *search_alias(command *node, char *string) {
+    if (node == NULL)
+        return NULL;
+    if (search_aliases(node->aliases, string) != NULL)
+        return node;
+    command *temp;
+    temp = search_alias(node->left, string);
+    if (temp != NULL)
+        return temp;
+    temp = search_alias(node->right, string);
+    if (temp != NULL)
+        return temp;
+}
+
+alias *search_aliases(alias *node, char *string) {
     if (node == NULL)
         return NULL;
     int x = strcmp(string, node->alias);
     if (x == 0)
         return node;
     else if (x > 0)
-        return search_alias(node->left, string);
+        return search_aliases(node->left, string);
     else
-        return search_alias(node->right, string);
+        return search_aliases(node->right, string);
 }

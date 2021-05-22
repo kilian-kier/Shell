@@ -1,5 +1,6 @@
 #!/bin/bash
 
-cd source
-ld -r -b binary help.txt -o help.o
-gcc alias.c basic_cmd.c command.c file_cmd.c functions.c help.o input.c main.c struct.c -o ../shell
+ld -r -b binary source/help.txt -o source/help.o
+gcc source/alias.c source/basic_cmd.c source/command.c source/file_cmd.c source/functions.c source/help.o source/input.c source/main.c source/struct.c -o shell
+clear
+./shell

@@ -8,6 +8,8 @@ alias *set_alias(alias *node, char *string, command *cmd);
 
 alias *delete_alias(alias *node, char *string, command *cmd);
 
-alias *search_alias(alias *node, char *string);
+command *search_alias(command *node, char *string);
+
+alias *search_aliases(alias *node, char *string);
 
 #endif //SHELL_ALIAS_H

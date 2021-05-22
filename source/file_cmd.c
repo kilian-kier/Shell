@@ -87,6 +87,41 @@ void mv(struct cmd_line *line) {
         fprintf(stderr, "%s\n", "Bitte übergib min. 2 Parameter");
         return;
     }
+    DIR *d = opendir(line->argv[1]);
+    if (d == NULL) {
+        FILE *f = fopen(line->argv[1], "r");
+        if (f != NULL) {
+            puts("Datei bereits vorhanden, soll sie überschrieben werden [j/n]");
+            int ret;
+            do {
+                fflush(stdin);
+                ret = getchar();
+                if (ret == 'n')
+                    return;
+                else if (ret != 'j')
+                    puts("Bitte entweder j oder n eingeben");
+            } while (ret != 'j');
+        }
+        fclose(f);
+        FILE *dest = fopen(line->argv[1], "w");
+        for (int i = 2; i < line->argc; i++) {
+            FILE *source = fopen(line->argv[i], "r");
+            int ch;
+            if (dest != NULL && source != NULL) {
+                while ((ch = fgetc(source)) != EOF)
+                    fputc(ch, dest);
+                fclose(source);
+                if (i != line->argc - 1)
+                    fputc('\n', dest);
+            } else {
+                perror("move_file");
+                return;
+            }
+            remove(line->argv[i]);
+        }
+        fclose(dest);
+        return;
+    }
     for (int i = 2; i < line->argc; i++) {
         char *temp_destination = malloc(strlen(line->argv[1]) * sizeof(char));
         strcpy(temp_destination, line->argv[1]);
@@ -208,4 +243,12 @@ void write_to_file(struct cmd_line *line) {
         fputc(' ', f);
     }
     fclose(f);
+}
+
+void rn(struct cmd_line *line) {
+    if (line->argc < 3) {
+        fprintf(stderr, "%s\n", "Bitte übergib min. 2 Parameter");
+        return;
+    }
+    rename(line->argv[1], line->argv[2]);
 }

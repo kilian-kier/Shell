@@ -4,11 +4,11 @@ int main() {
     void
     (*cmd_functions[])(struct cmd_line *) = {stop, help, clear, cat, working_dir, ls, touch, rm, cd, mv, cp, makedir,
                                              echo, chmode, username, insert_alias, rm_alias, show_aliases,
-                                             date, time_now, write_to_file};
+                                             date, time_now, write_to_file, rn};
     int n = sizeof(cmd_functions) / sizeof(void *);
 
-    extern int *_binary_help_txt_start;
-    char *help = (char *) &_binary_help_txt_start;
+    extern int *_binary_source_help_txt_start;
+    char *help = (char *) &_binary_source_help_txt_start;
 
     char *cmd_token = strtok(help, " ");
     char *help_token;
@@ -32,7 +32,8 @@ int main() {
         char *cmd = strtok(line, " ");
         char *alias = strtok(NULL, " \n\0");
         command *temp = search_cmd(cmd, global_cmd_root);
-        temp->aliases = set_alias(temp->aliases, alias, search_cmd(cmd, global_cmd_root));
+        if (temp != NULL)
+            temp->aliases = set_alias(temp->aliases, alias, search_cmd(cmd, global_cmd_root));
         free(line);
     }
 
